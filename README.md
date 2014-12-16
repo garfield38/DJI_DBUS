@@ -10,3 +10,5 @@ DJI_DBUS
   https://github.com/mikeshub/FUTABA_SBUS
 
   Refer to naza_dbus_decoder_wiring.png diagram for proper connection
+
+![Alt text](/naza_dbus_decoder_wiring.png?raw=true "Wiring Diagram")
