@@ -9,4 +9,4 @@ DJI_DBUS
   Work started from mikeshub Futaba library
   https://github.com/mikeshub/FUTABA_SBUS
 
-  Refer to naza_dbus_decoder_wiring.jpg diagram for proper connection
+  Refer to naza_dbus_decoder_wiring.png diagram for proper connection

@@ -140,35 +140,6 @@ void DJI_DBUS::UpdateServos(void) {
 }
 void DJI_DBUS::UpdateChannels(void) {
   uint8_t i;
-  //uint8_t sbus_pointer = 0;
-  // clear channels[]
-  /*for (i=0; i<16; i++) {
-    channels[i] = 0;
-  }
-
-  // reset counters
-  byte_in_sbus = 1;
-  bit_in_sbus = 0;
-  ch = 0;
-  bit_in_channel = 0;
-  //this method is much slower than the other method
-  // process actual sbus data
-  for (i=0; i<176; i++) {
-    if (sbusData[byte_in_sbus] & (1<<bit_in_sbus)) {
-      channels[ch] |= (1<<bit_in_channel);
-    }
-    bit_in_sbus++;
-    bit_in_channel++;
-
-    if (bit_in_sbus == 8) {
-      bit_in_sbus =0;
-      byte_in_sbus++;
-    }
-    if (bit_in_channel == 11) {
-      bit_in_channel =0;
-      ch++;
-    }
-  }*/
 
   channels[0]  = ((sbusData[1]|sbusData[2]<< 8) & 0x07FF);
   channels[1]  = ((sbusData[2]>>3|sbusData[3]<<5) & 0x07FF);
@@ -186,10 +157,9 @@ void DJI_DBUS::UpdateChannels(void) {
   channels[12] = ((sbusData[17]>>4|sbusData[18]<<4) & 0x07FF);
   channels[13] = ((sbusData[18]>>7|sbusData[19]<<1|sbusData[20]<<9) & 0x07FF);
   channels[14] = ((sbusData[20]>>2|sbusData[21]<<6) & 0x07FF);
-    channels[15] = ((sbusData[21]>>5|sbusData[22]<<3) & 0x07FF);
-  #endif
+  channels[15] = ((sbusData[21]>>5|sbusData[22]<<3) & 0x07FF);
   // DigiChannel 1
-  /*if (sbusData[23] & (1<<0)) {
+  if (sbusData[23] & (1<<0)) {
     channels[16] = 1;
   }
   else{
@@ -201,7 +171,8 @@ void DJI_DBUS::UpdateChannels(void) {
   }
   else{
     channels[17] = 0;
-  }*/
+  }
+  #endif
 
   for (i=0; i<8; i++) {
     channels[i]  = map(channels[i],364,1684,1000,2000);
